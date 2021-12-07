@@ -1,0 +1,30 @@
+﻿
+@model List<day1.Models.Course>
+@{
+    ViewBag.Title = "AddCourse";
+}
+
+<h2>Add Course To @ViewBag.std.Name </h2>
+@using (@Html.BeginForm())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.crsName</td>
+                    <td>@Html.CheckBox("crs." + item.crsId.ToString())</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" class="btn btn-success" value="Add" />
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+
+}

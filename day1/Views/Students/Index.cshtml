@@ -1,0 +1,49 @@
+﻿@model IEnumerable<day1.Models.Student>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h4 class="text-center text-uppercase">List of Students</h4>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
+</p>
+<table class="table table-bordered text-center table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Img)</th>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Age)</th>
+            <th>@Html.DisplayNameFor(model => model.department.deptName)</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+        <tr>
+            <td>
+                <img src="~/images/@student.Img"
+                     class="rounded-circle"
+                     height="90" width="100"
+                     asp-append-version="true" />
+            </td>
+            <td>@student.Id</td>
+            <td>@student.Name</td>
+            <td>@student.Age</td>
+            <td>@student.department.deptName</td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-warning">Edit</a> |*@
+                <a asp-action="Details" asp-route-id="@student.Id"class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-danger">Delete</a>|
+                @*<a asp-action="CoursesList" asp-route-id="@student.Id" class="btn btn-primary">CoursesList</a> |*@
+                <a asp-action="AddCourse" asp-route-id="@student.Id" class="btn btn-success">AddCourse</a> |
+                <a asp-action="RemoveCourse" asp-route-id="@student.Id" class="btn btn-danger">RemoveCourse</a>
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table> 

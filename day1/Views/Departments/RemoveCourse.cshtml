@@ -1,0 +1,29 @@
+﻿@model List<day1.Models.Course>
+@{
+    ViewBag.Title = "RemoveCourse";
+}
+
+<h2>Remove Course From @ViewBag.dept.deptName </h2>
+@using (@Html.BeginForm())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.crsName</td>
+                    <td>@Html.CheckBox("crs." + item.crsId.ToString())</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" class="btn btn-danger" value="Remove" />
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+
+}
